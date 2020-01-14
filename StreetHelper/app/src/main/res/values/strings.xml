@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">StreetHelper</string>
+
+    <string name="reportButtonText">Report a Problem</string>
+
+    <string name="title">Welcome to StreetHelper</string>
+</resources>
