@@ -4,4 +4,12 @@
     <string name="reportButtonText">Report a Problem</string>
 
     <string name="title">Welcome to StreetHelper</string>
+
+    <string-array name="android_versions">
+        <item>Street Holes</item>
+        <item>Streetlight Out</item>
+        <item>Street Sign Missing / Damaged</item>
+        <item>Trash Bin</item>
+        <item>Other Problems</item>
+    </string-array>
 </resources>
