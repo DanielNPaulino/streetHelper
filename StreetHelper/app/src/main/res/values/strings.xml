@@ -1,15 +1,17 @@
 <resources>
+    <!-- main activity strings-->
+
     <string name="app_name">StreetHelper</string>
 
     <string name="reportButtonText">Report a Problem</string>
 
     <string name="title">Welcome to StreetHelper</string>
 
-    <string-array name="android_versions">
-        <item>Street Holes</item>
-        <item>Streetlight Out</item>
-        <item>Street Sign Missing / Damaged</item>
-        <item>Trash Bin</item>
-        <item>Other Problems</item>
-    </string-array>
+    <!-- ProblemReport activity strings-->
+
+    <string name="problemTextView">Type of Problem:</string>
+    <string name="photoTextView">Please provide us a photo:</string>
+    <string name="pictureButton">Camera</string>
+    <string name="galleryButton">Gallery:</string>
+
 </resources>
