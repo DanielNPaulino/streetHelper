@@ -13,5 +13,7 @@
     <string name="photoTextView">Please provide us a photo:</string>
     <string name="pictureButton">Camera</string>
     <string name="galleryButton">Gallery:</string>
+    <string name="locationTextView">Tell us where is the problem:</string>
+    <string name="submitProblemButton">Submit:</string>
 
 </resources>

@@ -14,7 +14,7 @@
         android:id="@+id/problemTextView"
         android:text="@string/problemTextView"
         android:layout_below="@+id/toolbar"
-        android:textSize="32sp"
+        android:textSize="26sp"
         android:layout_margin="8dp"
         android:textStyle="bold"
         />
@@ -33,7 +33,7 @@
         android:id="@+id/photoTextView"
         android:layout_below="@+id/spinner"
         android:layout_margin="8dp"
-        android:textSize="32sp"
+        android:textSize="26sp"
         android:text="@string/photoTextView"
         android:textStyle="bold"
         />
@@ -66,7 +66,28 @@
         android:layout_below="@+id/buttonGallery"
         android:layout_marginTop="8dp"
         android:layout_centerHorizontal="true"
+        />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationTextView"
+        android:layout_below="@+id/pictureImgView"
+        android:layout_margin="8dp"
+        android:textSize="26sp"
+        android:text="@string/locationTextView"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSubmit"
+        android:layout_below="@+id/locationTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="@string/submitProblemButton"
+        android:onClick="openGallery"
         />
 
 

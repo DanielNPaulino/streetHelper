@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -34,6 +35,8 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
 
     Uri imageUri;
 
+    private Button buttonSubmit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -51,6 +54,16 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
         spinner.setOnItemSelectedListener(this);
 
         picImgView = findViewById(R.id.pictureImgView);
+        //button id finder
+        buttonSubmit = findViewById(R.id.buttonSubmit);
+
+        //listener
+        buttonSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProblemReport.this, ReportHistory.class));
+            }
+        });
     }
 
     @Override
