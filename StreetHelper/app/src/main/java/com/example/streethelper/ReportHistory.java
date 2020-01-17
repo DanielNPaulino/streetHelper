@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -14,14 +16,29 @@ public class ReportHistory extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private ArrayList<ReportItem> itemList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_history);
 
-        ArrayList<ReportItem> itemList = new ArrayList<>();
-        itemList.add(new ReportItem(R.drawable.homepage, "type of problem", "location")); //r.drawable.hmepage deve receber a foto tirada
 
+        Intent intent = getIntent();
+        String newProblem = intent.getStringExtra("problem");
+        String newLoca = intent.getStringExtra("loca");
+
+        buildRecyclerView();
+        insertItem(R.drawable.homepage, newProblem, newLoca);
+
+
+    }
+
+    /**
+     * Method responsible for defining the recycler view that is going to hold the items in the ArrayList
+     * Creation of the layoutManager and RecyclerAdapter for the recycler view and assign them to the recycler view.
+     */
+    private void buildRecyclerView() {
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
@@ -29,5 +46,10 @@ public class ReportHistory extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void insertItem(int imageView, String type, String location) {
+        itemList.add(new ReportItem(R.drawable.homepage, type, location));
+        mAdapter.notifyDataSetChanged();
     }
 }

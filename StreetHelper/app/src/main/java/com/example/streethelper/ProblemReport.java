@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
 
     private Button buttonSubmit;
     String problem;
+    TextView location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -58,11 +60,17 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
         //button id finder
         buttonSubmit = findViewById(R.id.buttonSubmit);
 
+        location = findViewById(R.id.locationTextView);
+
         //listener
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ProblemReport.this, ReportHistory.class));
+                Intent sendIntent = new Intent (ProblemReport.this, ReportHistory.class);
+                String loca = location.getText().toString();
+                sendIntent.putExtra("loca", loca);
+                sendIntent.putExtra("problem", problem);
+                startActivity(sendIntent);
             }
         });
     }
