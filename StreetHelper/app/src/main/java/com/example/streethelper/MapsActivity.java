@@ -42,14 +42,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        
+        //estig starting point marker
         LatLng startingPoint = new LatLng(38.016271, -7.875439);
         mMap.addMarker(new MarkerOptions().position(startingPoint).title("Marker in Estig"));
 
+        //change camera zoom and target and move it there on starting point.
         CameraPosition cameraPosition = new CameraPosition.Builder().zoom(15).target(startingPoint).build();
-
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
+        //listener for user input click, saving latLng position
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {

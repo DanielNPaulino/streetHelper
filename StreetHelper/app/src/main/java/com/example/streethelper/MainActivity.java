@@ -18,14 +18,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //sets toolbar
         toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
 
 
-        //button id finder
+        //listener for reportButton
         buttonReport = findViewById(R.id.reportButton);
-
-        //listener
         buttonReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -33,12 +35,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ProblemReport extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Toolbar toolBar;
     private Spinner spinner;
-    private static final String[] paths = {"Street Holes", "Streetlight Out", "Street Sign Missing / Damaged", "Thrash Bin Spilled", "Other Problems"};
+    private static final String[] typeOfProblem = {"Street Holes", "Streetlight Out", "Street Sign Missing / Damaged", "Thrash Bin Spilled", "Other Problems"};
 
     private ImageView picImgView;
     private static final int REQUEST_IMAGE_CAPTURE = 101;
@@ -49,7 +52,6 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
 
     private Button buttonSubmit;
     String problem;
-    TextView location;
 
     private Button buttonLocation;
     private EditText locationTxt;
@@ -59,23 +61,24 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_problem_report);
 
+        //set top toolbar
         toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
 
+        //spinner default setter using string array typeOfProblem
         spinner = findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ProblemReport.this,
-                android.R.layout.simple_spinner_item,paths);
+                android.R.layout.simple_spinner_item,typeOfProblem);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
         picImgView = findViewById(R.id.pictureImgView);
-        //button id finder
-        buttonSubmit = findViewById(R.id.buttonSubmit);
 
-        location = findViewById(R.id.locationTextView);
 
+
+        //listener for opening Map activity
         buttonLocation = findViewById(R.id.locationButton);
         buttonLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +87,8 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
             }
         });
 
-        //listener
+        //listener for submit button that adds location and type of problem to the intent
+        buttonSubmit = findViewById(R.id.buttonSubmit);
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,11 +101,21 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
         });
     }
 
+    /**
+     * Method that have the intent to call Map activity.
+     */
     private void pickPointOnMap() {
         Intent pickPointIntent = new Intent(this, MapsActivity.class);
         startActivityForResult(pickPointIntent, PICK_MAP_POINT_REQUEST);
     }
 
+    /**
+     * Method that gets the selected item's text to a global string to be passed to next activity.
+     * @param parent
+     * @param v
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
         String problemType = spinner.getSelectedItem().toString();
@@ -114,7 +128,7 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
     }
 
     /**
-     * method with the intent to access camera.
+     * Method with the intent to access camera.
      * @param view
      */
     public void takePicture(View view) {
@@ -124,16 +138,21 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
 
     }
 
+    /**
+     * Method with the intent to access Gallery.
+     * @param view
+     */
     public void openGallery(View view) {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent,PICK_IMAGE);
     }
 
     /**
-     * set picture taken to imageview
-     * @param requestCode
-     * @param resultCode
-     * @param data
+     * Set picture taken to imageview, set picture from gallery to imageview, and sets map point
+     * chosen to editText.
+     * @param requestCode code to enter each if.
+     * @param resultCode code to give confirmation by user.
+     * @param data data for intent.
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -156,11 +175,33 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 LatLng latLng = (LatLng) data.getParcelableExtra("picked_point");
+
+                String geoLocation = getCityName(latLng);
+
                 locationTxt = findViewById(R.id.recieveLocation);
-                locationTxt.setText(latLng.latitude + "" + latLng.longitude);
+                locationTxt.setText(geoLocation);
 
                 Toast.makeText(this, "Point Chosen: " + latLng.latitude + " " + latLng.longitude, Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    /**
+     * Method that gets the address from the latlang given.
+     * @param latLng LatLng given.
+     * @return myCity
+     */
+    private String getCityName(LatLng latLng) {
+        String myCity = "";
+        Geocoder geocoder = new Geocoder(ProblemReport.this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude, 1);
+            String address = addresses.get(0).getAddressLine(0);
+            myCity = addresses.get(0).getAddressLine(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return myCity;
     }
 }

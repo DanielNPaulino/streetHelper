@@ -27,16 +27,13 @@ public class ReportHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_history);
 
-
+        //intent that recieves String extras from previous activity
         Intent intent = getIntent();
         String newProblem = intent.getStringExtra("problem");
         String newLoca = intent.getStringExtra("loca");
 
-
-
         buildRecyclerView();
         insertItem(R.drawable.homepage, newProblem, newLoca);
-
 
     }
 
@@ -54,6 +51,12 @@ public class ReportHistory extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
+    /**
+     * Method that inserts the image and strings to the Cardview.
+     * @param imageView
+     * @param type
+     * @param location
+     */
     private void insertItem(int imageView, String type, String location) {
         itemList.add(new ReportItem(R.drawable.homepage, type, location));
         mAdapter.notifyDataSetChanged();

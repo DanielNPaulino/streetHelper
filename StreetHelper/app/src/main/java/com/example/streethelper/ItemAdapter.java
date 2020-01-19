@@ -21,6 +21,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         public TextView mTextView1;
         public TextView mTextView2;
 
+        /**
+         * Constructor for itemViewHolder class.
+         * @param itemView
+         */
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.reportItemImgView);
@@ -29,11 +33,20 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         }
     }
 
+    /**
+     * Instance of itemList.
+     * @param itemList
+     */
     public ItemAdapter(ArrayList<ReportItem> itemList){
         mItemList = itemList;
-
     }
 
+    /**
+     * ViewHolder builder.
+     * @param parent
+     * @param viewType
+     * @return ivh itemViewHolder.
+     */
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,6 +55,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         return ivh;
     }
 
+    /**
+     * Sets the current item's Image, text and text2 to the item of CardView.
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         ReportItem currentItem = mItemList.get(position);
@@ -50,6 +68,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         holder.mTextView2.setText(currentItem.getText2());
     }
 
+    /**
+     * Returns current size of the ItemList.
+     * @return itemList Size
+     */
     @Override
     public int getItemCount() {
         return mItemList.size();
