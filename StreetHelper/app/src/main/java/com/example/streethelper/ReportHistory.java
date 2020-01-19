@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -18,6 +20,8 @@ public class ReportHistory extends AppCompatActivity {
 
     private ArrayList<ReportItem> itemList = new ArrayList<>();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +31,8 @@ public class ReportHistory extends AppCompatActivity {
         Intent intent = getIntent();
         String newProblem = intent.getStringExtra("problem");
         String newLoca = intent.getStringExtra("loca");
+
+
 
         buildRecyclerView();
         insertItem(R.drawable.homepage, newProblem, newLoca);

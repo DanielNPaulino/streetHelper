@@ -12,8 +12,10 @@
     <string name="problemTextView">Type of Problem:</string>
     <string name="photoTextView">Please provide us a photo:</string>
     <string name="pictureButton">Camera</string>
-    <string name="galleryButton">Gallery:</string>
+    <string name="galleryButton">Gallery</string>
     <string name="locationTextView">Tell us where is the problem:</string>
+    <string name="locationButton">Location</string>
     <string name="submitProblemButton">Submit:</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
