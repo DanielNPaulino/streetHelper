@@ -7,6 +7,8 @@
 
     <string name="title">Welcome to StreetHelper</string>
 
+    <string name="checkReportButtonText">View Reports</string>
+
     <!-- ProblemReport activity strings-->
 
     <string name="problemTextView">Type of Problem:</string>

@@ -73,11 +73,9 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
             picImgView = findViewById(R.id.pictureImgView);
             objectDatabaseHandler = new DatabaseHandler(this);
 
-
         }catch (Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
 
         //set top toolbar
         toolBar = findViewById(R.id.toolbar);
@@ -93,8 +91,6 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
         spinner.setOnItemSelectedListener(this);
 
         picImgView = findViewById(R.id.pictureImgView);
-
-
 
         //listener for opening Map activity
         buttonLocation = findViewById(R.id.locationButton);
@@ -154,9 +150,7 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
      */
     public void takePicture(View view) {
         Intent imageTakeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
         startActivityForResult(imageTakeIntent,REQUEST_IMAGE_CAPTURE);
-
     }
 
     /**

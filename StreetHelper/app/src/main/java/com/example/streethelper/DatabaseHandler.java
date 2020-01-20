@@ -2,20 +2,23 @@ package com.example.streethelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     Context context;
     private static String DATABASE_NAME = "mydb.db";
-    private static int DATABASE_VERSION = 1;
+    private static int DATABASE_VERSION = 2;
     private static String createTableQuery = "create table imageInfo (imageName TEXT" + ", typeOfProblem TEXT" +  ", image BLOB)";
 
     private ByteArrayOutputStream objectByteArrayOutPutStream;
@@ -71,8 +74,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
             //getters for imagename ,type of problem and image
             objectContentValues.put("imageName", objectModelClass.getImageName());
-            objectContentValues.put("image", imageInBytes);
             objectContentValues.put("typeOfProblem", objectModelClass.getTypeOfProblem());
+            objectContentValues.put("image", imageInBytes);
+
 
             //setter of imagename type of problem and image to table
             long checkIfQueryRuns = objectSQLiteDatabase.insert("imageInfo", null, objectContentValues);
@@ -87,7 +91,42 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         }catch (Exception e){
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    /**
+     * ArrayList to recieve the reports saved on the database, to be called in the getData method
+     * used to show all database information.
+     * @return
+     */
+    public ArrayList<ModelClass> getAllImagesData() {
+        try {
+            SQLiteDatabase objectSqliteDatabase = this.getReadableDatabase();
+            ArrayList<ModelClass> objectModelClassList = new ArrayList<>();
+
+            Cursor objectCursor = objectSqliteDatabase.rawQuery("select * from imageInfo", null);
+            if (objectCursor.getCount() != 0)
+            {
+                while (objectCursor.moveToNext())
+                {
+                    String typeOfProblem = objectCursor.getString(0);
+                    String locationProblem = objectCursor.getString(1);
+                    byte [] imageBytes=objectCursor.getBlob(2);
+
+                    Bitmap objectBitmap= BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+                    objectModelClassList.add(new ModelClass(typeOfProblem,locationProblem,objectBitmap));
+                }
+                return objectModelClassList;
+            }
+            else
+            {
+                Toast.makeText(context, "No values found in Database", Toast.LENGTH_SHORT).show();
+                return null;
+            }
+        } catch (Exception e) {
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+            return null;
         }
     }
 }
+

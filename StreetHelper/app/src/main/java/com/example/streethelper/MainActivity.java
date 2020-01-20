@@ -32,4 +32,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Intent to go to the CheckReportsDB called on the onclick of button "View Reports"
+     * @param view
+     */
+    public void checkReports(View view){
+        startActivity(new Intent(this,CheckReportsDB.class));
+    }
 }
