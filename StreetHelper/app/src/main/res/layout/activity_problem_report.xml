@@ -101,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonSubmit"
-        android:layout_below="@+id/locationButton"
+        android:layout_below="@+id/recieveLocation"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:text="@string/submitProblemButton"

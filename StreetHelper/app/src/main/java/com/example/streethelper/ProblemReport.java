@@ -7,11 +7,13 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -26,6 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,18 +52,32 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
     private static final int PICK_IMAGE = 100;
     private static final int PICK_MAP_POINT_REQUEST = 999;
 
-    Uri galleryImageUri;
-
     private Button buttonSubmit;
     String problem;
 
     private Button buttonLocation;
     private EditText locationTxt;
 
+    private DatabaseReference mDatabase;
+    private Uri imageFilePath;
+    private Bitmap imageToStore;
+    DatabaseHandler objectDatabaseHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_problem_report);
+        //mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        try{
+            picImgView = findViewById(R.id.pictureImgView);
+            objectDatabaseHandler = new DatabaseHandler(this);
+
+
+        }catch (Exception e){
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
 
         //set top toolbar
         toolBar = findViewById(R.id.toolbar);
@@ -92,6 +110,9 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //saves image and location to local database
+                storeImage();
+
                 Intent sendIntent = new Intent (ProblemReport.this, ReportHistory.class);
                 String loca = locationTxt.getText().toString();
                 sendIntent.putExtra("loca", loca);
@@ -160,14 +181,14 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
         //camera result
         if(requestCode==REQUEST_IMAGE_CAPTURE && resultCode==RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            picImgView.setImageBitmap(imageBitmap);
+            imageToStore = (Bitmap) extras.get("data");
+            picImgView.setImageBitmap(imageToStore);
         }
 
         //gallery result
         if (requestCode==PICK_IMAGE && resultCode==RESULT_OK){
-            galleryImageUri = data.getData();
-            picImgView.setImageURI(galleryImageUri);
+            imageFilePath = data.getData();
+            picImgView.setImageURI(imageFilePath);
         }
 
         //location result
@@ -203,5 +224,22 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
         }
 
         return myCity;
+    }
+
+    /**
+     * Method that saves image and location to the local database.
+     */
+    private void storeImage(){
+        try {
+            if (!locationTxt.getText().toString().isEmpty() && picImgView.getDrawable() != null && imageToStore != null){
+                objectDatabaseHandler.storeImage(new ModelClass(locationTxt.getText().toString(),imageToStore));
+            }else 
+            {
+                Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show();
+            }
+            
+        }catch (Exception e){
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

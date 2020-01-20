@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "872595845863",
+    "firebase_url": "https://streethelper-2fdfd.firebaseio.com",
+    "project_id": "streethelper-2fdfd",
+    "storage_bucket": "streethelper-2fdfd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872595845863:android:c41c250c65979c1646a842",
+        "android_client_info": {
+          "package_name": "com.example.streethelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "872595845863-9qdv5sv5cgbl23ivntd97sm8vts1qo6k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.streethelper",
+            "certificate_hash": "ab4345496cedfffd47e4cf5f89005d2027347781"
+          }
+        },
+        {
+          "client_id": "872595845863-hj8he88v2uv3flgseg42qrtestp0hoav.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD5qzYq2xYCoEOunTHQZwfS6UXNHYLVMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872595845863-hj8he88v2uv3flgseg42qrtestp0hoav.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

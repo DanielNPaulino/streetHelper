@@ -50,6 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         CameraPosition cameraPosition = new CameraPosition.Builder().zoom(15).target(startingPoint).build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
+
         //listener for user input click, saving latLng position
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
