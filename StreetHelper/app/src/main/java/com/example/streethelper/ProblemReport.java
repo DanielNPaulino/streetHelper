@@ -232,7 +232,7 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
     private void storeImage(){
         try {
             if (!locationTxt.getText().toString().isEmpty() && picImgView.getDrawable() != null && imageToStore != null){
-                objectDatabaseHandler.storeImage(new ModelClass(locationTxt.getText().toString(),imageToStore));
+                objectDatabaseHandler.storeImage(new ModelClass(locationTxt.getText().toString(), problem, imageToStore));
             }else 
             {
                 Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show();

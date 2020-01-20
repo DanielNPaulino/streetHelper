@@ -16,7 +16,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     Context context;
     private static String DATABASE_NAME = "mydb.db";
     private static int DATABASE_VERSION = 1;
-    private static String createTableQuery = "create table imageInfo (imageName TEXT" + ", image BLOB)";
+    private static String createTableQuery = "create table imageInfo (imageName TEXT" + ", typeOfProblem TEXT" +  ", image BLOB)";
 
     private ByteArrayOutputStream objectByteArrayOutPutStream;
     private byte[] imageInBytes;
@@ -69,11 +69,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             imageInBytes = objectByteArrayOutPutStream.toByteArray();
             ContentValues objectContentValues = new ContentValues();
 
-            //getters for imagename and image
+            //getters for imagename ,type of problem and image
             objectContentValues.put("imageName", objectModelClass.getImageName());
             objectContentValues.put("image", imageInBytes);
+            objectContentValues.put("typeOfProblem", objectModelClass.getTypeOfProblem());
 
-            //setter of imagename and image to table
+            //setter of imagename type of problem and image to table
             long checkIfQueryRuns = objectSQLiteDatabase.insert("imageInfo", null, objectContentValues);
 
             if (checkIfQueryRuns != -1){
