@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#95C8D8"
     tools:context=".MainActivity">
 
 
@@ -18,7 +19,7 @@
         android:text="@string/title"
         android:textSize="30sp"
         android:layout_centerHorizontal="true"
-        android:textColor="#89CFF0"
+        android:textColor="#FDA50F"
         android:textStyle="bold"
         />
 

@@ -8,8 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -32,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.text.SimpleDateFormat;
@@ -182,7 +186,15 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
         //gallery result
         if (requestCode==PICK_IMAGE && resultCode==RESULT_OK){
             imageFilePath = data.getData();
-            picImgView.setImageURI(imageFilePath);
+            try {
+                imageToStore = MediaStore.Images.Media.getBitmap(this.getContentResolver(),imageFilePath);
+                int height = 400;
+                int width = 400;
+                imageToStore= getResizedBitmap(imageToStore,height, width);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            picImgView.setImageBitmap(imageToStore);
         }
 
         //location result
@@ -199,6 +211,31 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
                 Toast.makeText(this, "Point Chosen: " + latLng.latitude + " " + latLng.longitude, Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    /**
+     * Method that resizes bitmap for gallery images, in order to avoid out of memory crashes.
+     * @param imageToStore
+     * @param newHeight
+     * @param newWidth
+     * @return
+     */
+    public Bitmap getResizedBitmap(Bitmap imageToStore, int newHeight, int newWidth) {
+        int width = imageToStore.getWidth();
+        int height = imageToStore.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+
+        // create a matrix for the manipulation
+        Matrix matrix = new Matrix();
+
+        // resize the bit map
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // recreate the new Bitmap
+        Bitmap resizedBitmap = Bitmap.createBitmap(imageToStore, 0, 0, width, height, matrix, false);
+
+        return resizedBitmap;
     }
 
     /**

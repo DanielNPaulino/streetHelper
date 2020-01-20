@@ -20,4 +20,10 @@
     <string name="submitProblemButton">Submit:</string>
     <string name="title_activity_maps">Map</string>
 
+    <!-- ProblemReport activity strings-->
+
+    <string name="showImagesButton">Show Images</string>
+    <string name="typeOfProblem">Type Of Problem</string>
+    <string name="locationOfProblem">Location Of Problem</string>
+
 </resources>

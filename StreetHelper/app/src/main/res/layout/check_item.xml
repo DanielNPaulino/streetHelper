@@ -5,16 +5,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Type of Problem"
-        android:textSize="20sp"
+        android:text="@string/typeOfProblem"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:padding="5dp"
         android:id="@+id/typeOfProblemTxtview"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Location of Problem"
-        android:textSize="20sp"
+        android:text="@string/locationOfProblem"
+        android:textSize="16sp"
+        android:padding="5dp"
         android:id="@+id/locationProblemTxtview"
         android:layout_below="@+id/typeOfProblemTxtview"
         />
