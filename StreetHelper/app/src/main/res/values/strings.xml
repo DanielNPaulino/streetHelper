@@ -17,7 +17,7 @@
     <string name="galleryButton">Gallery</string>
     <string name="locationTextView">Tell us where is the problem:</string>
     <string name="locationButton">Location</string>
-    <string name="submitProblemButton">Submit:</string>
+    <string name="submitProblemButton">Submit</string>
     <string name="title_activity_maps">Map</string>
 
     <!-- ProblemReport activity strings-->
