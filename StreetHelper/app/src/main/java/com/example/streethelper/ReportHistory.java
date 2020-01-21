@@ -33,7 +33,7 @@ public class ReportHistory extends AppCompatActivity {
         String newLoca = intent.getStringExtra("loca");
 
         buildRecyclerView();
-        insertItem(R.drawable.homepage, newProblem, newLoca);
+        insertItem(R.drawable.logo, newProblem, newLoca);
 
     }
 
@@ -58,7 +58,7 @@ public class ReportHistory extends AppCompatActivity {
      * @param location
      */
     private void insertItem(int imageView, String type, String location) {
-        itemList.add(new ReportItem(R.drawable.homepage, type, location));
+        itemList.add(new ReportItem(R.drawable.logo, type, location));
         mAdapter.notifyDataSetChanged();
     }
 }

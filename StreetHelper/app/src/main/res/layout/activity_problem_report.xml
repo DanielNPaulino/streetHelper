@@ -15,8 +15,8 @@
         android:id="@+id/problemTextView"
         android:text="@string/problemTextView"
         android:layout_below="@+id/toolbar"
-        android:textSize="26sp"
-        android:layout_margin="8dp"
+        android:textSize="20sp"
+        android:layout_margin="5dp"
         android:textStyle="bold"
         />
 
@@ -25,16 +25,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/problemTextView"
-        android:textSize="18sp"
-        android:layout_margin="8dp"/>
+        android:textSize="16sp"
+        android:layout_margin="5dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/photoTextView"
         android:layout_below="@+id/spinner"
-        android:layout_margin="8dp"
-        android:textSize="26sp"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
         android:text="@string/photoTextView"
         android:textStyle="bold"
         />
@@ -44,7 +44,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonPicture"
         android:layout_below="@+id/photoTextView"
-        android:layout_margin="8dp"
+        android:background="@drawable/round_button"
+        android:textColor="#F05E23"
+        android:layout_margin="5dp"
         android:text="@string/pictureButton"
         android:onClick="takePicture"
         />
@@ -54,8 +56,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonGallery"
         android:layout_below="@+id/photoTextView"
+        android:background="@drawable/round_button"
+        android:textColor="#F05E23"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:text="@string/galleryButton"
         android:onClick="openGallery"
         />
@@ -65,7 +69,7 @@
         android:layout_height="250dp"
         android:id="@+id/pictureImgView"
         android:layout_below="@+id/buttonGallery"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         />
 
@@ -74,8 +78,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/locationTextView"
         android:layout_below="@+id/pictureImgView"
-        android:layout_margin="8dp"
-        android:textSize="26sp"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
         android:text="@string/locationTextView"
         android:textStyle="bold"
         />
@@ -84,8 +88,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/locationButton"
-        android:layout_margin="8dp"
+        android:layout_margin="5dp"
         android:layout_below="@+id/locationTextView"
+        android:background="@drawable/round_button"
+        android:textColor="#F05E23"
         android:text="@string/locationButton"
         />
 
@@ -95,7 +101,7 @@
         android:id="@+id/recieveLocation"
         android:layout_below="@+id/locationTextView"
         android:layout_marginLeft="150dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         />
 
     <Button
@@ -103,8 +109,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonSubmit"
         android:layout_below="@+id/recieveLocation"
+        android:background="@drawable/round_button"
+        android:textColor="#F05E23"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:text="@string/submitProblemButton"
         />
 

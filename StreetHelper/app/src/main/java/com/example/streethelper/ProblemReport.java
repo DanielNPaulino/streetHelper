@@ -84,6 +84,8 @@ public class ProblemReport extends AppCompatActivity implements AdapterView.OnIt
         //set top toolbar
         toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
+        toolBar.setLogo(R.drawable.logo_small);
+
 
         //spinner default setter using string array typeOfProblem
         spinner = findViewById(R.id.spinner);

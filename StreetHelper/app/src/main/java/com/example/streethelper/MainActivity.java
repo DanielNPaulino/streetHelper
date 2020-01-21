@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         //sets toolbar
         toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
+        toolBar.setLogo(R.drawable.logo_small);
 
 
         //listener for reportButton

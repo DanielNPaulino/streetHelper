@@ -12,8 +12,8 @@ public class CheckReportsDB extends AppCompatActivity {
 
     private DatabaseHandler objectDatabaseHandler;
     private RecyclerView objectRecyclerView;
-
     private RVAdapter objectRvAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
