@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     Context context;
-    private static String DATABASE_NAME = "mydb.db";
+    private static String DATABASE_NAME = "streetDB.db";
     private static int DATABASE_VERSION = 2;
     private static String createTableQuery = "create table imageInfo (imageName TEXT" + ", typeOfProblem TEXT" +  ", image BLOB)";
 

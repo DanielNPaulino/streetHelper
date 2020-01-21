@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- main activity strings-->
+
+    <string name="app_name">StreetHelper</string>
+
+    <string name="reportButtonText">Reporte um problema</string>
+
+    <string name="title">Bem-Vindo ao StreetHelper</string>
+
+    <string name="checkReportButtonText">Ver Problemas</string>
+
+    <!-- ProblemReport activity strings-->
+
+    <string name="problemTextView">Tipo de Problema:</string>
+    <string name="photoTextView">Envie-nos uma Foto:</string>
+    <string name="pictureButton">Câmera</string>
+    <string name="galleryButton">Galeria</string>
+    <string name="locationTextView">Diga-nos onde é o problema:</string>
+    <string name="locationButton">Localização</string>
+    <string name="submitProblemButton">Submeter</string>
+    <string name="title_activity_maps">Mapa</string>
+
+    <!-- ProblemReport activity strings-->
+
+    <string name="showImagesButton">Mostrar Imagens</string>
+    <string name="typeOfProblem">Tipo de Problema</string>
+    <string name="locationOfProblem">Localização do problema</string>
+</resources>
